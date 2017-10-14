@@ -9,8 +9,8 @@ public class Port
 {
     private static int nextID = 0;
     private String name = ""; //Order by name
-    private ArrayList<Cargo> local = new ArrayList<Cargo>(); //Local Cargo
-    private ArrayList<Cargo> outbound = new ArrayList<Cargo>(); //Outbound Cargo
+    private Stack<Cargo> local = new Stack<>(); //Local Cargo
+    private Stack<Cargo> outbound = new Stack<>(); //Outbound Cargo
     private Random gen = new Random();
     private int myID; //equals()
 
@@ -53,7 +53,7 @@ public class Port
      * get the local cargo at the port.
      * @return the cargo.
      */
-    public ArrayList<Cargo> getLocal()
+    public Stack<Cargo> getLocal()
     {
          return local;
     }
@@ -62,7 +62,7 @@ public class Port
      * get the cargo that is being shipped oit somewhere else.
      * @return the cargo that is being shipped.
      */
-    public ArrayList<Cargo> getOutbound()
+    public Stack<Cargo> getOutbound()
     {
          return outbound;
     }
