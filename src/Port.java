@@ -1,12 +1,6 @@
-
 import java.util.*;
-/**
- *@author Edgar Centeno
- *@author Joe Matteson
- */
 public class Port
 {
-
     private String name = ""; //Order by name
     private ArrayList<Cargo> local = new ArrayList<Cargo>(); //Local Cargo
     private ArrayList<Cargo> outbound = new ArrayList<Cargo>(); //Outbound Cargo
