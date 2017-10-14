@@ -1,4 +1,8 @@
 import java.util.*;
+/**
+ * @author Joe Matteson
+ * @author Edgar Centeno
+ */
 public class Port
 {
     private String name = ""; //Order by name
