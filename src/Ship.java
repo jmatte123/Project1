@@ -3,6 +3,7 @@ import java.util.*;
 /**
  * @author Joe Matteson
  * @author Edgar Centeno
+ * we used github!
  */
 
 
@@ -88,6 +89,11 @@ public class Ship
         setID();
     }
 
+    /**
+     * This constructor will not take in anything
+     *  It will also randomly set the distance, max tonnage and speed of Ship.
+     *  The ship name will be changed to a  ID incrementing as each ship is made
+     */
     public Ship()
     {
         double temp = (gen.nextDouble() * 700) + 50;
@@ -99,21 +105,36 @@ public class Ship
         setID();
     }
 
+    /**
+     * this gets the Id of Ship
+     * @return myID
+     */
     public int getID()
     {
         return myID;
     }
 
+    /**
+     * this sets Id of ship incremented
+     */
     private void setID()
     {
         myID = nextID++;
     }
 
+    /**
+     * get speed of Ship.
+     * @return speed
+     */
     public int getSpeed()
     {
         return speed;
     }
 
+    /**
+     * set speed of Ship.
+     * @param inSpeed - user sets the speed and checks if speed is not negative
+     */
     public void setSpeed(int inSpeed)
     {
         if (inSpeed >= 0)
@@ -122,11 +143,19 @@ public class Ship
         }
     }
 
+    /**
+     * gets distance
+     * @return - distance
+     */
     public int getDistance()
     {
         return dist;
     }
 
+    /**
+     * sets distance
+     * @param inDist - takes in  distance and checks to make sure its not negative
+     */
     public void setDistance(int inDist)
     {
         if (inDist >= 0)
@@ -135,15 +164,28 @@ public class Ship
         }
     }
 
+    /**
+     *  gets the current cargo
+     * @return - cct
+     */
     public ArrayList<Cargo> getCurrentCargo()
     {
         return cct;
     }
+
+    /**(
+     * gets max tonnage
+     * @return - mct (Max Cargo Tonnage)
+     */
     public double getMax()
     {
         return mct;
     }
 
+    /**
+     * sets the max tonnage and makes sure its not negative
+     * @param inMax - takes in max tonnage as a double
+     */
     public void setMax(double inMax)
     {
         if (inMax >= 0)
@@ -152,16 +194,28 @@ public class Ship
         }
     }
 
+    /**
+     * gets name
+     * @return - name
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     * takes in name
+     * @param inName -
+     */
     public void setName(String inName)
     {
         name = inName;
     }
 
+    /**
+     * get current cargo tonnage
+     * @return -
+     */
     public double getCurrentCargoTonnage()
     {
         double total = 0.0;
@@ -172,6 +226,11 @@ public class Ship
         return total;
     }
 
+    /**
+     * grabs a Ship and another ship and checks if they are equal in name
+     * @param other -  grabs the other ship
+     * @return boolean
+     */
     public boolean equals(Ship other)
     {
         if (getID() == other.getID())
@@ -179,6 +238,13 @@ public class Ship
         return false;
     }
 
+    /**
+     * compares ship with another ship to see if max tonnage
+     * @param other grabs other ship
+     * @return - -1 if original max tonnage is less than other max tonnage
+     *         - 1 if original max tonnage is more than other max tonnage
+     *         - 0 if both original and max tonnage equal
+     */
     public int compareTo(Ship other)
     {
         if (getMax() < other.getMax())
@@ -189,25 +255,12 @@ public class Ship
             return 0;
     }
 
-    public String toString()
-    {
-        String output = "";
-        output = "This is the good ship " +getName()+ ":\n";
-        output = output + "\tShip Number: " + getID() + "\n";
-        output = output + "\tCurrent Distance to Next Destination: " + getDistance() + "\n";
-        output = output + "\tTravelling at a Speed of : " + getSpeed() + "\n";
-        output = output + "\tMax Tonnage Able to Carry: " + getMax() + "\n*****CARGO ONBOARD*********\n";
-        for (Cargo unit : cct)
-        {
-            output = output + unit;
-        }
-        output = output + "*****END CARGO LIST*********\n\tTotal Tonnage of Cargo: " + getCurrentCargoTonnage() + "\n";
-        return output;
-    }
-
-
-
-
+    /**
+     * load cargo into cargo space
+     * @param inCargo - takes in cargo
+     * @return boolean | false if cargo tonnage is negative or if get tonnage + current cargo tonnage is more than max tonnage
+     *                   true if cargo is positive and is less than max tonnage
+     */
     public boolean load(Cargo inCargo)
     {
         if (inCargo.getTonnage() < 0)
@@ -220,6 +273,11 @@ public class Ship
 
     }
 
+    /**
+     * unloads cago
+     * @param port takes in the port that it is going to unload at
+     * @return list of cargo
+     */
     public ArrayList<Cargo> unload(String port)
     {
         ArrayList<Cargo> toUnload = new ArrayList<Cargo>();
@@ -234,6 +292,10 @@ public class Ship
         return toUnload;
     }
 
+    /**
+     * unloads all the cargo from the ship and sorts it out given the cargo's destination.
+     * @return the list of the cargo
+     */
     public ArrayList<Cargo> unloadAll()
     {
         ArrayList<Cargo> toUnload = new ArrayList<Cargo>();
@@ -245,6 +307,9 @@ public class Ship
         return toUnload;
     }
 
+    /**
+     * looks at how far the ship has gone with the speed and distance of said ship.
+     */
     public void travel()
     {
         int traveled = 0;
@@ -265,5 +330,26 @@ public class Ship
             System.out.println("The Ship: " + getName() + " has arrived at its destination");
         }
     }
+
+    /**
+     * toString will format so it will output in a readable form
+     * @return - the output format
+     */
+    public String toString()
+    {
+        String output = "";
+        output = "This is the good ship " +getName()+ ":\n";
+        output = output + "\tShip Number: " + getID() + "\n";
+        output = output + "\tCurrent Distance to Next Destination: " + getDistance() + "\n";
+        output = output + "\tTravelling at a Speed of : " + getSpeed() + "\n";
+        output = output + "\tMax Tonnage Able to Carry: " + getMax() + "\n*****CARGO ONBOARD*********\n";
+        for (Cargo unit : cct)
+        {
+            output = output + unit;
+        }
+        output = output + "*****END CARGO LIST*********\n\tTotal Tonnage of Cargo: " + getCurrentCargoTonnage() + "\n";
+        return output;
+    }
+
 
 }
