@@ -33,7 +33,7 @@ public class Cargo {
     }
 
     /**
-     *
+     * this is the gets cargo order Number
      * @return order number
      */
     public int getOrderNumber() {
@@ -41,7 +41,7 @@ public class Cargo {
     }
 
     /**
-     *
+     * This gets the destination for cargo
      * @return return destination
      */
     public String getDest() {
@@ -49,7 +49,7 @@ public class Cargo {
     }
 
     /**
-     *
+     * this sets dest to inDest
      * @param inDest take in inDest from user and set dest to user inDest
      */
     private void setDest(String inDest) {
@@ -57,7 +57,7 @@ public class Cargo {
     }
 
     /**
-     *
+     *this gets the tons
      * @return tons
      */
     public double getTonnage() {
@@ -65,7 +65,7 @@ public class Cargo {
     }
 
     /**
-     *
+     *this sets the tons
      * @param inTons take in user inTons and set tons to user inTons if inTons is more than or equal to zero
      *               this will not allow negatives
      */
