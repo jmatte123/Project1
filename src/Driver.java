@@ -6,8 +6,11 @@ import java.io.*; //Need File IO Tools
  */
 public class Driver
 {
-
-
+     /**
+      * Main entry point from the application
+      * @param args command-line arguments
+      * @throws FileNotFoundException if file not found
+      */
     public static void main(String[] args) throws FileNotFoundException
     {
          //Create a link to an input file
