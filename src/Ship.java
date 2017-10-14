@@ -1,4 +1,9 @@
 import java.util.*;
+
+/**
+ * @author Joe Matteson
+ * @author Edgar Centeno
+ */
 public class Ship
 {
     private String name = "";
