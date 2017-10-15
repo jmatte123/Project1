@@ -11,7 +11,7 @@ public class Driver
       * @param args command-line arguments
       * @throws FileNotFoundException if file not found
       */
-    public static void main(String[] args) throws FileNotFoundException
+    public static void main(String... args) throws FileNotFoundException
     {
          //Create a link to an input file
          File portFile = new File("Ports.txt");
