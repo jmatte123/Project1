@@ -134,7 +134,10 @@ public class Driver
          //Creating a new port, using myPort.get(0) as a template
          //I want a deep copy instead
          Port newPort = new Port(myPorts.get(0).getName());
-         for (Cargo unit : myPorts.get(0).getOutbound().toArray())
+         Cargo[] cargo = Arrays.copyOf(myPorts.get(0).getOutbound().toArray(),
+                 myPorts.get(0).getOutbound().size(),
+                 Cargo[].class);
+         for (Cargo unit : cargo)
          {
               newPort.addOutbound(new Cargo(unit.getDest(), unit.getTonnage()));
          }
@@ -155,9 +158,13 @@ public class Driver
          }
          System.out.println("\tNumber of matched outbound cargo (should match above): " + match);
          int dupes = 0;
-         for (Cargo newO : newPort.getOutbound().toArray())
+         Cargo[] newCargo = Arrays.copyOf(newPort.getOutbound().toArray(),
+                 newPort.getOutbound().size(),
+                 Cargo[].class);
+
+         for (Cargo newO : newCargo)
          {
-              for (Cargo oldO : myPorts.get(0).getOutbound().toArray())
+              for (Cargo oldO : cargo)
               {
                    if (newO.equals(oldO))
                    {
@@ -176,7 +183,7 @@ public class Driver
          //Creating a new port, using myPort.get(0) as a template
          //I want a deep copy instead (same as Section 2)
          newPort = new Port(myPorts.get(0).getName());
-         for (Cargo unit : myPorts.get(0).getOutbound().toArray())
+         for (Cargo unit : cargo)
          {
               newPort.addOutbound(new Cargo(unit.getDest(), unit.getTonnage()));
          }
@@ -197,9 +204,12 @@ public class Driver
          }
          System.out.println("\tNumber of matched outbound cargo (should match above): " + match);
          dupes = 0;
-         for (Cargo newO : newPort.getOutbound().toArray())
+         newCargo = Arrays.copyOf(newPort.getOutbound().toArray(),
+                 newPort.getOutbound().size(),
+                 Cargo[].class);
+         for (Cargo newO : newCargo)
          {
-              for (Cargo oldO : myPorts.get(0).getOutbound().toArray())
+              for (Cargo oldO : cargo)
               {
                    if (newO.equals(oldO))
                    {
