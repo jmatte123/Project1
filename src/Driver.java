@@ -80,7 +80,7 @@ public class Driver
 
                    //Add Cargo to Port's Outbound load.
                    //You'll need a method in Port to do this
-                   eachPort.addOutbound(temp);
+//                   eachPort.addOutbound(temp);
               }
 
          }
@@ -132,84 +132,84 @@ public class Driver
          //Creating a new port, using myPort.get(0) as a template
          //I want a deep copy instead
          Port newPort = new Port(myPorts.get(0).getName());
-         for (Cargo unit : myPorts.get(0).getOutbound())
-         {
-              newPort.addOutbound(new Cargo(unit.getDest(), unit.getTonnage()));
-         }
-         
-         //Verifying that both Ports have same general cargo
-         //Checking outbound
-         System.out.println("Checking Outbound");
-         System.out.println("\tTotal Outbound in original: " + myPorts.get(0).getOutbound().size());
-         System.out.println("\tTotal Outbound in newPort (should match above): " + newPort.getOutbound().size());
-         int match = 0;
-         for (int x = 0; x < newPort.getOutbound().size(); x++)
-         {
-              //Check Attributes
-              if (newPort.getOutbound().get(x).getDest().equals(myPorts.get(0).getOutbound().get(x).getDest()) && newPort.getOutbound().get(x).getTonnage() == myPorts.get(0).getOutbound().get(x).getTonnage())
-              {
-                   match++;
-              }
-         }
-         System.out.println("\tNumber of matched outbound cargo (should match above): " + match);
-         int dupes = 0;
-         for (Cargo newO : newPort.getOutbound())
-         {
-              for (Cargo oldO : myPorts.get(0).getOutbound())
-              {
-                   if (newO.equals(oldO))
-                   {
-                        dupes++;
-                   }
-              }
-         }
-         System.out.println("\tOutbound cargo that is at both Ports (should be zero since that is impossible): " + dupes);
-         
-        
-         //End Section 2
-         
-         
-         //Section 3
-         //Well, that didn't work, trying a different strat
-         //Creating a new port, using myPort.get(0) as a template
-         //I want a deep copy instead (same as Section 2)
-         newPort = new Port(myPorts.get(0).getName());
-         for (Cargo unit : myPorts.get(0).getOutbound())
-         {
-              newPort.addOutbound(new Cargo(unit.getDest(), unit.getTonnage()));
-         }
-         
-         //Verifying that both Ports have same general cargo
-         //Checking outbound
-         System.out.println("Checking Outbound");
-         System.out.println("\tTotal Outbound in original: " + myPorts.get(0).getOutbound().size());
-         System.out.println("\tTotal Outbound in newPort (should match above): " + newPort.getOutbound().size());
-         match = 0;
-         for (int x = 0; x < newPort.getOutbound().size(); x++)
-         {
-              //Check Attributes
-              if (newPort.getOutbound().get(x).getDest().equals(myPorts.get(0).getOutbound().get(x).getDest()) && newPort.getOutbound().get(x).getTonnage() == myPorts.get(0).getOutbound().get(x).getTonnage())
-              {
-                   match++;
-              }
-         }
-         System.out.println("\tNumber of matched outbound cargo (should match above): " + match);
-         dupes = 0;
-         for (Cargo newO : newPort.getOutbound())
-         {
-              for (Cargo oldO : myPorts.get(0).getOutbound())
-              {
-                   if (newO.equals(oldO))
-                   {
-                        dupes++;
-                   }
-              }
-         }
-         System.out.println("\tOutbound cargo that is at both Ports (should be zero since that is impossible): " + dupes);
-         
- 
-         
-         //End Section 3
+//         for (Cargo unit : myPorts.get(0).getOutbound())
+//         {
+//              newPort.addOutbound(new Cargo(unit.getDest(), unit.getTonnage()));
+//         }
+//
+//         //Verifying that both Ports have same general cargo
+//         //Checking outbound
+//         System.out.println("Checking Outbound");
+//         System.out.println("\tTotal Outbound in original: " + myPorts.get(0).getOutbound().size());
+//         System.out.println("\tTotal Outbound in newPort (should match above): " + newPort.getOutbound().size());
+//         int match = 0;
+//         for (int x = 0; x < newPort.getOutbound().size(); x++)
+//         {
+//              //Check Attributes
+//              if (newPort.getOutbound().get(x).getDest().equals(myPorts.get(0).getOutbound().get(x).getDest()) && newPort.getOutbound().get(x).getTonnage() == myPorts.get(0).getOutbound().get(x).getTonnage())
+//              {
+//                   match++;
+//              }
+//         }
+//         System.out.println("\tNumber of matched outbound cargo (should match above): " + match);
+//         int dupes = 0;
+//         for (Cargo newO : newPort.getOutbound())
+//         {
+//              for (Cargo oldO : myPorts.get(0).getOutbound())
+//              {
+//                   if (newO.equals(oldO))
+//                   {
+//                        dupes++;
+//                   }
+//              }
+//         }
+//         System.out.println("\tOutbound cargo that is at both Ports (should be zero since that is impossible): " + dupes);
+//
+//
+//         //End Section 2
+//
+//
+//         //Section 3
+//         //Well, that didn't work, trying a different strat
+//         //Creating a new port, using myPort.get(0) as a template
+//         //I want a deep copy instead (same as Section 2)
+//         newPort = new Port(myPorts.get(0).getName());
+//         for (Cargo unit : myPorts.get(0).getOutbound())
+//         {
+//              newPort.addOutbound(new Cargo(unit.getDest(), unit.getTonnage()));
+//         }
+//
+//         //Verifying that both Ports have same general cargo
+//         //Checking outbound
+//         System.out.println("Checking Outbound");
+//         System.out.println("\tTotal Outbound in original: " + myPorts.get(0).getOutbound().size());
+//         System.out.println("\tTotal Outbound in newPort (should match above): " + newPort.getOutbound().size());
+//         match = 0;
+//         for (int x = 0; x < newPort.getOutbound().size(); x++)
+//         {
+//              //Check Attributes
+//              if (newPort.getOutbound().get(x).getDest().equals(myPorts.get(0).getOutbound().get(x).getDest()) && newPort.getOutbound().get(x).getTonnage() == myPorts.get(0).getOutbound().get(x).getTonnage())
+//              {
+//                   match++;
+//              }
+//         }
+//         System.out.println("\tNumber of matched outbound cargo (should match above): " + match);
+//         dupes = 0;
+//         for (Cargo newO : newPort.getOutbound())
+//         {
+//              for (Cargo oldO : myPorts.get(0).getOutbound())
+//              {
+//                   if (newO.equals(oldO))
+//                   {
+//                        dupes++;
+//                   }
+//              }
+//         }
+//         System.out.println("\tOutbound cargo that is at both Ports (should be zero since that is impossible): " + dupes);
+//
+//
+//
+//         //End Section 3
     }
 
 

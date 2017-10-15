@@ -88,6 +88,30 @@ public class Stack<T>{
     }
 
     /**
+     * Converts the Stack into an array.
+     * @return an array of the stack.
+     */
+    public T[] toArray() {
+        T[] array = (T[]) new Object[amount];
+        return getArrayOfData(array, 0, first);
+    }
+
+    /**
+     * Recursively puts all the data from the stack into an array.
+     * @param arr the array holding all the data.
+     * @param index the counter to hit every position in the array.
+     * @param curr the current node in which the data is being extracted.
+     * @return the final array with all the data.
+     */
+    private T[] getArrayOfData(T[] arr, int index, Node curr) {
+        if (curr.data != null)
+            arr[index] = curr.data;
+        if (curr == last)
+            return arr;
+        return getArrayOfData(arr, index + 1, curr.next);
+    }
+
+    /**
      * represents a node of data for a linked list.
      */
     class Node {

@@ -90,125 +90,125 @@ public class Port {
      *
      * @return the total amount of tonnage in the local stock.
      */
-    public double getLocalTonnage() {
-        double total = 0.0;
-        for (Cargo unit : local) {
-            total += unit.getTonnage();
-        }
-        return total;
-    }
-
-    /**
-     * get the amount of tonnage that the outbound has.
-     *
-     * @return the total amount of tonnage.
-     */
-    public double getOutboundTonnage() {
-        double total = 0.0;
-        for (Cargo unit : outbound) {
-            total += unit.getTonnage();
-        }
-        return total;
-    }
-
-    /**
-     * adds cargo to the outbound cargo pile.
-     *
-     * @param inCargo cargo to put on the outbound.
-     */
-    public void addOutbound(Cargo inCargo) {
-        if (inCargo.getTonnage() >= 0) {
-            outbound.add(inCargo);
-        }
-    }
-
-    /**
-     * load cargo onto the ship.
-     *
-     * @param targetShip the ship that will take the cargo.
-     */
-    public void load(Ship targetShip) {
-        for (int x = outbound.size() - 1; x >= 0; x--) {
-            if (targetShip.load(outbound.get(x))) {
-                outbound.remove(x);
-            }
-        }
-    }
-
-    /**
-     * unloads certain cargo from the ship.
-     *
-     * @param targetShip the ship that will be unloaded.
-     */
-    public void unload(Ship targetShip) {
-        ArrayList<Cargo> unloaded = targetShip.unload(getName());
-        for (Cargo unit : unloaded) {
-            if (getName().equals(unit.getDest())) {
-                local.add(unit);
-            } else {
-                outbound.add(unit);
-            }
-        }
-
-    }
-
-    /**
-     * unloads all the cargo from the ship and sorts it out given the cargo's destination.
-     *
-     * @param targetShip the ship that will be unloaded.
-     */
-    public void unloadAll(Ship targetShip) {
-        ArrayList<Cargo> unloaded = targetShip.unloadAll();
-        for (Cargo unit : unloaded) {
-            if (getName().equals(unit.getDest())) {
-                local.add(unit);
-            } else {
-                outbound.add(unit);
-            }
-        }
-
-    }
-
-    /**
-     * returns true or false depending upon if two ports have the same id.
-     *
-     * @param other the other port for testing if it is equal.
-     * @return true if it is the same otherwise false.
-     */
-    public boolean equals(Port other) {
-        if (getID() == other.getID())
-            return true;
-        return false;
-    }
-
-    /**
-     * compares the names of two ports.
-     *
-     * @param other the other port to compare it to
-     * @return negative if the string is smaller than the other, positive if the string is bigger,
-     * and 0 if the string is the same size.
-     */
-    public int compareTo(Port other) {
-        return getName().compareTo(other.getName());
-    }
-
-    /**
-     * string representation of the class.
-     *
-     * @return the output format.
-     */
-    public String toString() {
-        String output = "";
-        output = "This is " + getName() + ":\n";
-        output = output + "\tPort Number: " + getID() + "\n*****LOCAL CARGO*********\n";
-        for (Cargo unit : local) {
-            output = output + unit;
-        }
-        output = output + "*****END LOCAL CARGO*********\n\tTotal Tonnage of Local Cargo: " + getLocalTonnage() + "\n*****OUTBOUND CARGO*********\n";
-        for (Cargo unit : outbound) {
-            output = output + unit;
-        }
-        output = output + "*****END OUTBOUND CARGO*********\n\tTotal Tonnage of Outbound Cargo: " + getOutboundTonnage() + "\n";
-        return output;
-    }
+//    public double getLocalTonnage() {
+//        double total = 0.0;
+//        for (Cargo unit : local) {
+//            total += unit.getTonnage();
+//        }
+//        return total;
+//    }
+//
+//    /**
+//     * get the amount of tonnage that the outbound has.
+//     *
+//     * @return the total amount of tonnage.
+//     */
+//    public double getOutboundTonnage() {
+//        double total = 0.0;
+//        for (Cargo unit : outbound) {
+//            total += unit.getTonnage();
+//        }
+//        return total;
+//    }
+//
+//    /**
+//     * adds cargo to the outbound cargo pile.
+//     *
+//     * @param inCargo cargo to put on the outbound.
+//     */
+//    public void addOutbound(Cargo inCargo) {
+//        if (inCargo.getTonnage() >= 0) {
+//            outbound.add(inCargo);
+//        }
+//    }
+//
+//    /**
+//     * load cargo onto the ship.
+//     *
+//     * @param targetShip the ship that will take the cargo.
+//     */
+//    public void load(Ship targetShip) {
+//        for (int x = outbound.size() - 1; x >= 0; x--) {
+//            if (targetShip.load(outbound.get(x))) {
+//                outbound.remove(x);
+//            }
+//        }
+//    }
+//
+//    /**
+//     * unloads certain cargo from the ship.
+//     *
+//     * @param targetShip the ship that will be unloaded.
+//     */
+//    public void unload(Ship targetShip) {
+//        ArrayList<Cargo> unloaded = targetShip.unload(getName());
+//        for (Cargo unit : unloaded) {
+//            if (getName().equals(unit.getDest())) {
+//                local.add(unit);
+//            } else {
+//                outbound.add(unit);
+//            }
+//        }
+//
+//    }
+//
+//    /**
+//     * unloads all the cargo from the ship and sorts it out given the cargo's destination.
+//     *
+//     * @param targetShip the ship that will be unloaded.
+//     */
+//    public void unloadAll(Ship targetShip) {
+//        ArrayList<Cargo> unloaded = targetShip.unloadAll();
+//        for (Cargo unit : unloaded) {
+//            if (getName().equals(unit.getDest())) {
+//                local.add(unit);
+//            } else {
+//                outbound.add(unit);
+//            }
+//        }
+//
+//    }
+//
+//    /**
+//     * returns true or false depending upon if two ports have the same id.
+//     *
+//     * @param other the other port for testing if it is equal.
+//     * @return true if it is the same otherwise false.
+//     */
+//    public boolean equals(Port other) {
+//        if (getID() == other.getID())
+//            return true;
+//        return false;
+//    }
+//
+//    /**
+//     * compares the names of two ports.
+//     *
+//     * @param other the other port to compare it to
+//     * @return negative if the string is smaller than the other, positive if the string is bigger,
+//     * and 0 if the string is the same size.
+//     */
+//    public int compareTo(Port other) {
+//        return getName().compareTo(other.getName());
+//    }
+//
+//    /**
+//     * string representation of the class.
+//     *
+//     * @return the output format.
+//     */
+//    public String toString() {
+//        String output = "";
+//        output = "This is " + getName() + ":\n";
+//        output = output + "\tPort Number: " + getID() + "\n*****LOCAL CARGO*********\n";
+//        for (Cargo unit : local) {
+//            output = output + unit;
+//        }
+//        output = output + "*****END LOCAL CARGO*********\n\tTotal Tonnage of Local Cargo: " + getLocalTonnage() + "\n*****OUTBOUND CARGO*********\n";
+//        for (Cargo unit : outbound) {
+//            output = output + unit;
+//        }
+//        output = output + "*****END OUTBOUND CARGO*********\n\tTotal Tonnage of Outbound Cargo: " + getOutboundTonnage() + "\n";
+//        return output;
+//    }
 }
