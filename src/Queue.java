@@ -19,7 +19,7 @@ public class Queue<T>{
      * Constructor which initializes a new queue.
      */
     public Queue() {
-        initialized = true;
+        this.initialized = true;
     }
 
     /**
@@ -86,6 +86,7 @@ public class Queue<T>{
 
     /**
      * Converts the Stack into an array.
+     *
      * @return an array of the stack.
      */
     public T[] toArray() {
@@ -95,6 +96,7 @@ public class Queue<T>{
 
     /**
      * Recursively puts all the data from the stack into an array.
+     *
      * @param arr the array holding all the data.
      * @param index the counter to hit every position in the array.
      * @param curr the current node in which the data is being extracted.
@@ -106,6 +108,15 @@ public class Queue<T>{
         if (curr == last)
             return arr;
         return getArrayOfData(arr, index + 1, curr.next);
+    }
+
+    /**
+     * clears data from Queue.
+     */
+    public void clear() {
+        first = null;
+        last = null;
+        amount = 0;
     }
 
     /**

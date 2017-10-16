@@ -89,6 +89,7 @@ public class Stack<T>{
 
     /**
      * Converts the Stack into an array.
+     *
      * @return an array of the stack.
      */
     public T[] toArray() {
@@ -98,6 +99,7 @@ public class Stack<T>{
 
     /**
      * Recursively puts all the data from the stack into an array.
+     *
      * @param arr the array holding all the data.
      * @param index the counter to hit every position in the array.
      * @param curr the current node in which the data is being extracted.
@@ -109,6 +111,15 @@ public class Stack<T>{
         if (curr == last)
             return arr;
         return getArrayOfData(arr, index + 1, curr.next);
+    }
+
+    /**
+     * clears data from Stack.
+     */
+    public void clear() {
+        first = null;
+        last = null;
+        amount = 0;
     }
 
     /**

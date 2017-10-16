@@ -13,7 +13,7 @@ public class Ship {
     private static int nextID = 0;
     private String name = "";
     private double mct = 0.0; //Max Cargo Tonnage; using this for compareTo()
-    private ArrayList<Cargo> cct = new ArrayList<Cargo>();
+    private Stack<Cargo> cct = new Stack<>();
     private int speed = 0; //Speed of Ship
     private int dist = 0; //Distance between Ship and its current destination
     private Random gen = new Random();
@@ -163,7 +163,7 @@ public class Ship {
      *
      * @return - cct.
      */
-    public ArrayList<Cargo> getCurrentCargo() {
+    public Stack<Cargo> getCurrentCargo() {
         return cct;
     }
 
@@ -213,7 +213,7 @@ public class Ship {
      */
     public double getCurrentCargoTonnage() {
         double total = 0.0;
-        for (Cargo unit : cct) {
+        for (Cargo unit : cct.toArray()) {
             total += unit.getTonnage();
         }
         return total;
@@ -262,7 +262,7 @@ public class Ship {
         if (inCargo.getTonnage() + getCurrentCargoTonnage() > getMax())
             return false;
 
-        cct.add(inCargo);
+        cct.push(inCargo);
         return true;
 
     }
@@ -276,9 +276,9 @@ public class Ship {
     public ArrayList<Cargo> unload(String port) {
         ArrayList<Cargo> toUnload = new ArrayList<Cargo>();
         for (int x = cct.size() - 1; x >= 0; x--) {
-            if (cct.get(x).getDest().equals(port)) {
-                toUnload.add(cct.get(x));
-                cct.remove(x);
+            if (cct.toArray()[x].getDest().equals(port)) {
+                toUnload.add(cct.toArray()[x]);
+                cct.pop();
             }
         }
         return toUnload;
@@ -291,7 +291,7 @@ public class Ship {
      */
     public ArrayList<Cargo> unloadAll() {
         ArrayList<Cargo> toUnload = new ArrayList<Cargo>();
-        for (Cargo unit : cct) {
+        for (Cargo unit : cct.toArray()) {
             toUnload.add(unit);
         }
         cct.clear();
@@ -328,7 +328,7 @@ public class Ship {
         output = output + "\tCurrent Distance to Next Destination: " + getDistance() + "\n";
         output = output + "\tTravelling at a Speed of : " + getSpeed() + "\n";
         output = output + "\tMax Tonnage Able to Carry: " + getMax() + "\n*****CARGO ONBOARD*********\n";
-        for (Cargo unit : cct) {
+        for (Cargo unit : cct.toArray()) {
             output = output + unit;
         }
         output = output + "*****END CARGO LIST*********\n\tTotal Tonnage of Cargo: " + getCurrentCargoTonnage() + "\n";
