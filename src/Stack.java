@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 /**
  * @author Joe Matteson
  * @author Edgar Centeno
@@ -90,10 +93,12 @@ public class Stack<T>{
     /**
      * Converts the Stack into an array.
      *
+     * @param type the type of array that will be returned
      * @return an array of the stack.
      */
-    public T[] toArray() {
-        T[] array = (T[]) new Object[amount];
+    public T[] toArray(Class<T> type) {
+        assert !isEmpty();
+        T[] array = (T[]) Array.newInstance(type, amount);
         return getArrayOfData(array, 0, first);
     }
 

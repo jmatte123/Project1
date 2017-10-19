@@ -89,8 +89,8 @@ public class Queue<T>{
      *
      * @return an array of the stack.
      */
-    public T[] toArray() {
-        T[] array = (T[]) new Object[amount];
+    public Object[] toArray() {
+        Object[] array = new Object[amount];
         return getArrayOfData(array, 0, first);
     }
 
@@ -102,7 +102,7 @@ public class Queue<T>{
      * @param curr the current node in which the data is being extracted.
      * @return the final array with all the data.
      */
-    private T[] getArrayOfData(T[] arr, int index, Node curr) {
+    private Object[] getArrayOfData(Object[] arr, int index, Node curr) {
         if (curr.data != null)
             arr[index] = curr.data;
         if (curr == last)

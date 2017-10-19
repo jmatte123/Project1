@@ -213,7 +213,7 @@ public class Ship {
      */
     public double getCurrentCargoTonnage() {
         double total = 0.0;
-        for (Cargo unit : cct.toArray()) {
+        for (Cargo unit : cct.toArray(Cargo.class)) {
             total += unit.getTonnage();
         }
         return total;
@@ -276,8 +276,8 @@ public class Ship {
     public ArrayList<Cargo> unload(String port) {
         ArrayList<Cargo> toUnload = new ArrayList<Cargo>();
         for (int x = cct.size() - 1; x >= 0; x--) {
-            if (cct.toArray()[x].getDest().equals(port)) {
-                toUnload.add(cct.toArray()[x]);
+            if ((cct.toArray(Cargo.class)[x]).getDest().equals(port)) {
+                toUnload.add(cct.toArray(Cargo.class)[x]);
                 cct.pop();
             }
         }
@@ -291,7 +291,7 @@ public class Ship {
      */
     public ArrayList<Cargo> unloadAll() {
         ArrayList<Cargo> toUnload = new ArrayList<Cargo>();
-        for (Cargo unit : cct.toArray()) {
+        for (Cargo unit : cct.toArray(Cargo.class)) {
             toUnload.add(unit);
         }
         cct.clear();
@@ -328,7 +328,7 @@ public class Ship {
         output = output + "\tCurrent Distance to Next Destination: " + getDistance() + "\n";
         output = output + "\tTravelling at a Speed of : " + getSpeed() + "\n";
         output = output + "\tMax Tonnage Able to Carry: " + getMax() + "\n*****CARGO ONBOARD*********\n";
-        for (Cargo unit : cct.toArray()) {
+        for (Cargo unit : cct.toArray(Cargo.class)) {
             output = output + unit;
         }
         output = output + "*****END CARGO LIST*********\n\tTotal Tonnage of Cargo: " + getCurrentCargoTonnage() + "\n";
