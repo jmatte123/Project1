@@ -12,10 +12,12 @@ public class Port {
     private static int nextID = 0;
     private String name = ""; //Order by name
     private Stack<Cargo> local = new Stack<>(); //Local Cargo
-    private Stack<Cargo> outbound = new Stack<>(); //Outbound Cargo
+    private Stack<Cargo> outbound  = new Stack<>(); //Outbound Cargo
     private Random gen = new Random();
     private int myID; //equals()
-
+    private int numShipsInPort=0;
+    private Queue<Ship>  inBoundShips = new Queue<>();
+    private Queue<Ship>  outBoundShips = new Queue<>();
     /**
      * Default Port constructor.  Creates a new port with a new id.
      */
@@ -109,6 +111,42 @@ public class Port {
             total += unit.getTonnage();
         }
         return total;
+    }
+
+    /**
+     * this will get the inBound of the ships
+     * @return - the ship that in the port
+     */
+    public Queue<Ship> getInBound() {
+        return inBoundShips;
+    }
+
+    /**
+     * this will put a ship at the end of the line a ship is put in the port
+     * it will also increment for every ships there is in the port.
+     * @param shipComingIn - take in the ship that in coming into the port
+     */
+    public void inBoundShips(Ship shipComingIn) {
+            inBoundShips.Enqueue(shipComingIn);
+            numShipsInPort++;
+    }
+
+    /**
+     * get the ships that are out of port
+     * @return - the ships going out of the port
+     */
+    public Queue<Ship> getOutBoundShips() {
+        return outBoundShips;
+    }
+
+    /**
+     * the inBoundShips.Dequeue has the data from the ship that you are trying to Dequeue from the Queue class
+     * this will then set that ship to an outboundShip
+     * deincrament number of ships in a port beucase a ship left
+     */
+    public void outBoundShips() {
+        outBoundShips.Enqueue(inBoundShips.Dequeue());
+        numShipsInPort--;
     }
 
     /**
@@ -208,7 +246,7 @@ public class Port {
         for (Cargo unit : outbound.toArray(Cargo.class)) {
             output = output + unit;
         }
-        output = output + "*****END OUTBOUND CARGO*********\n\tTotal Tonnage of Outbound Cargo: " + getOutboundTonnage() + "\n";
+        output += "*****END OUTBOUND CARGO*********\n\tTotal Tonnage of Outbound Cargo: " + getOutboundTonnage() + "\n";
         return output;
     }
 }

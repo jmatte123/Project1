@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+
 /**
  * @author Joe Matteson
  * @author Edgar Centeno
@@ -89,8 +91,9 @@ public class Queue<T>{
      *
      * @return an array of the stack.
      */
-    public Object[] toArray() {
-        Object[] array = new Object[amount];
+    public T[] toArray(Class<T> type) {
+        assert !isEmpty();
+        T[] array = (T[]) Array.newInstance(type, amount);
         return getArrayOfData(array, 0, first);
     }
 
@@ -102,7 +105,7 @@ public class Queue<T>{
      * @param curr the current node in which the data is being extracted.
      * @return the final array with all the data.
      */
-    private Object[] getArrayOfData(Object[] arr, int index, Node curr) {
+    private T[] getArrayOfData(T[] arr, int index, Node curr) {
         if (curr.data != null)
             arr[index] = curr.data;
         if (curr == last)
