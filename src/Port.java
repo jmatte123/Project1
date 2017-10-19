@@ -92,7 +92,7 @@ public class Port {
      */
     public double getLocalTonnage() {
         double total = 0.0;
-        for (Cargo unit : local.toArray()) {
+        for (Cargo unit : local.toArray(Cargo.class)) {
             total += unit.getTonnage();
         }
         return total;
@@ -105,7 +105,7 @@ public class Port {
      */
     public double getOutboundTonnage() {
         double total = 0.0;
-        for (Cargo unit : outbound.toArray()) {
+        for (Cargo unit : outbound.toArray(Cargo.class)) {
             total += unit.getTonnage();
         }
         return total;
@@ -129,7 +129,7 @@ public class Port {
      */
     public void load(Ship targetShip) {
         for (int i = 0; i < outbound.size(); i++) {
-            if (targetShip.load(outbound.peek())) {
+            if (targetShip.load(outbound.toArray(Cargo.class)[i])) {
                 outbound.pop();
             }
         }
@@ -201,11 +201,11 @@ public class Port {
         String output = "";
         output = "This is " + getName() + ":\n";
         output = output + "\tPort Number: " + getID() + "\n*****LOCAL CARGO*********\n";
-        for (Cargo unit : local.toArray()) {
+        for (Cargo unit : local.toArray(Cargo.class)) {
             output = output + unit;
         }
         output = output + "*****END LOCAL CARGO*********\n\tTotal Tonnage of Local Cargo: " + getLocalTonnage() + "\n*****OUTBOUND CARGO*********\n";
-        for (Cargo unit : outbound.toArray()) {
+        for (Cargo unit : outbound.toArray(Cargo.class)) {
             output = output + unit;
         }
         output = output + "*****END OUTBOUND CARGO*********\n\tTotal Tonnage of Outbound Cargo: " + getOutboundTonnage() + "\n";
