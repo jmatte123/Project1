@@ -221,6 +221,9 @@ public class Ship {
      */
     public double getCurrentCargoTonnage() {
         double total = 0.0;
+        if(cct.toArray(Cargo.class)==null){
+            return total;
+        }
         for (Cargo unit : cct.toArray(Cargo.class)) {
             total += unit.getTonnage();
         }

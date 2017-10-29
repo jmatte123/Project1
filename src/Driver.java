@@ -1,9 +1,22 @@
 import java.lang.reflect.Array;
 import java.util.*; // Need Random
 import java.io.*; //Need File IO Tools
+
+/**
+ * @author Edgar Centeno
+ * @author Joe Mattason
+ *
+ * Driver for the whole application
+ */
 public class Driver
 {
 
+     /**
+      * this is the mian method
+      *
+      * @param args - command line arguments
+      * @throws FileNotFoundException - if file is not found, throw an exception
+      */
      public static void main(String[] args) throws FileNotFoundException
      {
           //Create a link to an input file
@@ -229,19 +242,28 @@ public class Driver
 
           //load the ships in port 1
           port1.load();
-
+          System.out.println(port1.toString());
           //ships travel from port 1
           ship1.travel();
 
-          //
+          // loads the ship in port 2
           port2.load();
-
-          //
+          System.out.println(port2.toString());
+          //ships travel from port 1
           ship2.travel();
 
           //
           port1.inBoundShips(ship2);
+          System.out.println(ship2.toString());
           port2.inBoundShips(ship1);
+          System.out.println(ship1.toString());
+
+          port1.unload();
+          System.out.println(port1.toString());
+          port2.unload();
+          System.out.println(port2.toString());
+
+
 
      }
 

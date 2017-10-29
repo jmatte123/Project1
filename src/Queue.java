@@ -50,7 +50,9 @@ public class Queue<T>{
      * @return the data that was removed.
      */
     public T Dequeue() {
-        assert !isEmpty();
+        if(isEmpty()){
+            return null;
+        }
         T data = first.data;
         Node nextNode = first.next;
         first.next = null;
@@ -83,7 +85,7 @@ public class Queue<T>{
      * @return true if it is, otherwise false.
      */
     public boolean isEmpty() {
-        return first == null && initialized;
+        return first == null;
     }
 
     /**
@@ -92,7 +94,9 @@ public class Queue<T>{
      * @return an array of the stack.
      */
     public T[] toArray(Class<T> type) {
-        assert !isEmpty();
+        if(isEmpty()){
+            return null;
+        }
         T[] array = (T[]) Array.newInstance(type, amount);
         return getArrayOfData(array, 0, first);
     }

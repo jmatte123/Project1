@@ -94,6 +94,8 @@ public class Port {
      */
     public double getLocalTonnage() {
         double total = 0.0;
+        if(local.toArray(Cargo.class)==null)
+            return total;
         for (Cargo unit : local.toArray(Cargo.class)) {
             total += unit.getTonnage();
         }
@@ -107,6 +109,8 @@ public class Port {
      */
     public double getOutboundTonnage() {
         double total = 0.0;
+        if(outbound.toArray(Cargo.class)==null)
+            return total;
         for (Cargo unit : outbound.toArray(Cargo.class)) {
             total += unit.getTonnage();
         }
@@ -115,6 +119,7 @@ public class Port {
 
     /**
      * this will get the inBound of the ships
+     *
      * @return - the ship that in the port
      */
     public Queue<Ship> getInBound() {
@@ -124,6 +129,7 @@ public class Port {
     /**
      * this will put a ship at the end of the line a ship is put in the port
      * it will also increment for every ships there is in the port.
+     *
      * @param shipComingIn - take in the ship that in coming into the port
      */
     public void inBoundShips(Ship shipComingIn) {
@@ -133,6 +139,7 @@ public class Port {
 
     /**
      * get the ships that are out of port
+     *
      * @return - the ships going out of the port
      */
     public Queue<Ship> getOutBoundShips() {
@@ -142,6 +149,7 @@ public class Port {
     /**
      * the inBoundShips.Dequeue has the data from the ship that you are trying to Dequeue from the Queue class
      * this will then set that ship to an outboundShip
+     *
      * deincrament number of ships in a port beucase a ship left
      */
     public void outBoundShips() {
@@ -238,15 +246,22 @@ public class Port {
     public String toString() {
         String output = "";
         output = "This is " + getName() + ":\n";
-        output = output + "\tPort Number: " + getID() + "\n*****LOCAL CARGO*********\n";
-        for (Cargo unit : local.toArray(Cargo.class)) {
-            output = output + unit;
-        }
-        output = output + "*****END LOCAL CARGO*********\n\tTotal Tonnage of Local Cargo: " + getLocalTonnage() + "\n*****OUTBOUND CARGO*********\n";
-        for (Cargo unit : outbound.toArray(Cargo.class)) {
-            output = output + unit;
-        }
-        output += "*****END OUTBOUND CARGO*********\n\tTotal Tonnage of Outbound Cargo: " + getOutboundTonnage() + "\n";
+        output = output + "\tPort Number: " + getID() + "\n**LOCAL CARGO**\n\t";
+        if (local.toArray(Cargo.class) != null) {
+            for (Cargo unit : local.toArray(Cargo.class)) {
+                output = output + unit + "\t";
+            }
+        } else
+            output += 0.0;
+        output += "\n";
+        output = output + "**END LOCAL CARGO**\n\tTotal Tonnage of Local Cargo: " + getLocalTonnage() + "\n**OUTBOUND CARGO**\n";
+        if (outbound.toArray(Cargo.class) != null) {
+            for (Cargo unit : outbound.toArray(Cargo.class)) {
+                output = output + unit;
+            }
+        } else
+            output += 0;
+        output += "**END OUTBOUND CARGO**\n\tTotal Tonnage of Outbound Cargo: " + getOutboundTonnage() + "\n";
         return output;
     }
 }

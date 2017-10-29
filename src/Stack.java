@@ -53,8 +53,13 @@ public class Stack<T>{
      * @return the data that was removed.
      */
     public T pop() {
-        assert !isEmpty();
+        if(isEmpty()){
+            return null;
+        }
         T data = last.data;
+        if(first.equals(last)){
+            return data;
+        }
         Node prevNode = last.previous;
         prevNode.next = null;
         last.previous = null;
@@ -87,7 +92,7 @@ public class Stack<T>{
      * @return true if it is, otherwise false.
      */
     public boolean isEmpty() {
-        return first == null && initialized;
+        return first == null;
     }
 
     /**
@@ -97,7 +102,9 @@ public class Stack<T>{
      * @return an array of the stack.
      */
     public T[] toArray(Class<T> type) {
-        assert !isEmpty();
+        if(isEmpty()){
+            return null;
+        }
         T[] array = (T[]) Array.newInstance(type, amount);
         return getArrayOfData(array, 0, first);
     }
