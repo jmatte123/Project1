@@ -3,7 +3,6 @@ import java.util.*;
 /**
  * @author Joe Matteson
  * @author Edgar Centeno
- * we used github! yay
  *
  * this is the Ship class, which represents a cargo ship.
  */
@@ -125,6 +124,15 @@ public class Ship {
      */
     public int getSpeed() {
         return speed;
+    }
+
+    /**
+     * Gets the cct of the cargo
+     *
+     * @return the cct
+     */
+    public Stack<Cargo> getCct() {
+        return cct;
     }
 
     /**

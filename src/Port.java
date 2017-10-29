@@ -162,24 +162,24 @@ public class Port {
 
     /**
      * load cargo onto the ship.
-     *
-     * @param targetShip the ship that will take the cargo.
      */
-    public void load(Ship targetShip) {
+    public void load() {
         for (int i = 0; i < outbound.size(); i++) {
-            if (targetShip.load(outbound.toArray(Cargo.class)[i])) {
+            if (inBoundShips.peek().load(outbound.toArray(Cargo.class)[i])) {
                 outbound.pop();
             }
         }
+        outBoundShips();
     }
 
     /**
      * unloads certain cargo from the ship.
-     *
-     * @param targetShip the ship that will be unloaded.
      */
-    public void unload(Ship targetShip) {
-        ArrayList<Cargo> unloaded = targetShip.unload(getName());
+    public void unload() {
+        ArrayList<Cargo> unloaded = inBoundShips.peek().unload(getName());
+        if (inBoundShips.peek().getCct() == null){
+            return;
+        }
         for (Cargo unit : unloaded) {
             if (getName().equals(unit.getDest())) {
                 local.push(unit);

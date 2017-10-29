@@ -202,9 +202,47 @@ public class Driver
           }
           System.out.println("\tOutbound cargo that is at both Ports (should be zero since that is impossible): " + dupes);
 
-
-
           //End Section 3
+          System.out.println("--------------------------------");
+
+          //creates the ports
+          Port port1 = new Port("something");
+          Port port2 = new Port("Cool Port");
+
+          //creates the ships
+          Ship ship1 = new Ship();
+          Ship ship2 = new Ship();
+
+          //creates the cargo
+          Cargo cargo1 = new Cargo( "something", 50.50);
+          Cargo cargo2 = new Cargo( "something", 75.75);
+          Cargo cargo3 = new Cargo( "Cool Port", 13.29);
+
+          //adds cargo to ports
+          port1.addOutbound(cargo3);
+          port2.addOutbound(cargo2);
+          port2.addOutbound(cargo3);
+
+          //adds ships to ports
+          port1.inBoundShips(ship1);
+          port2.inBoundShips(ship2);
+
+          //load the ships in port 1
+          port1.load();
+
+          //ships travel from port 1
+          ship1.travel();
+
+          //
+          port2.load();
+
+          //
+          ship2.travel();
+
+          //
+          port1.inBoundShips(ship2);
+          port2.inBoundShips(ship1);
+
      }
 
 
